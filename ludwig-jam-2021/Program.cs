@@ -1,6 +1,8 @@
 ﻿using System;
 using Raylib_cs;
 
+using ludwig_jam_2021.Helpers;
+
 namespace ludwig_jam_2021
 {
     class Program
@@ -17,9 +19,8 @@ namespace ludwig_jam_2021
             while(!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.BLACK);
 
-                Raylib.DrawText("Hello World", 12, 12, 20, Color.WHITE);
+                LoadingScreen.Render();
 
                 Raylib.EndDrawing();
             }
