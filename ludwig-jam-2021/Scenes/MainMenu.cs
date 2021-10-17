@@ -3,24 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Numerics;
 
 using Raylib_cs;
 
-struct Button
-{
-    public String text;
-    public Color background;
-    public Func<int> onClick;
-
-    public Button(String text, Color background, Func<int> onClick)
-    {
-        this.text = text;
-        this.background = background;
-        this.onClick = onClick;
-    }
-}
+using ludwig_jam_2021.UI;
 
 namespace ludwig_jam_2021.Scenes
 {
@@ -44,17 +31,36 @@ namespace ludwig_jam_2021.Scenes
             int screenWidth = Raylib.GetScreenWidth();
             int screenHeight = Raylib.GetScreenHeight();
 
-            // Title Text
-            int titleTextSize = screenWidth/30;
-            String titleText = "Game Name";
-            int titleTextWidth = Raylib.MeasureText(titleText, titleTextSize);
+            Button PlayButton = new Button(screenWidth / 2, screenHeight / 2);
+            PlayButton.SetPadding(200, 100);
+            PlayButton.SetText("Play", 100);
+            PlayButton.SetBackground(Color.RED);
+            PlayButton.SetOnHover(Hover);
 
-            Raylib.DrawText(titleText, screenWidth / 2 - titleTextWidth/2, 300, titleTextSize, Color.RED);
+            PlayButton.RenderCenter();
+
+            Button QuitButton = new Button(screenWidth / 2, screenHeight / 2 + PlayButton.GetHeight() + 100);
+            // Styling
+            QuitButton.SetPadding(100, 50);
+            QuitButton.SetText("Quit", 50);
+            QuitButton.SetBackground(Color.RED);
+            QuitButton.SetTextHeight(50);
+            // Events
+            QuitButton.SetOnHover(Hover);
+            QuitButton.SetOnClick(Quit);
+
+            QuitButton.RenderCenter();
+
         }
 
-        public static int Quit()
+        private static void Hover(Button button)
         {
-            return 0;
+            button.SetBackground(Color.BLUE);
+        }
+
+        public static void Quit(Button button)
+        {
+            Environment.Exit(0);
         }
     }
 }
