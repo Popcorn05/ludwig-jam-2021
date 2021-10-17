@@ -6,4 +6,8 @@
     <RootNamespace>ludwig_jam_2021</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Raylib-cs" Version="3.7.0.1" />
+  </ItemGroup>
+
 </Project>
