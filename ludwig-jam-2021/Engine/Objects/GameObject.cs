@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ludwig_jam_2021.Engine.Renderer;
 
 namespace ludwig_jam_2021.Engine.Objects
 {
-    //Abstract class because shouldn't be instanced
+    //Abstract class because shouldn't be instanced, only extended
     abstract class GameObject
     {
         //Gameworld position
-        private float x;
-        private float y;
+        public abstract float x { get; set; }
+        public abstract float y { get; set; }
 
-        //Render function, to be overridden in extensions
-        public abstract bool Render();
+        //Sprite information
+        public abstract Sprite sprite { get; set; }
+
+        //Update function
+        public abstract void Update();
+
+        //Render function
+        public abstract void Render();
     }
 }

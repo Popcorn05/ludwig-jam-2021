@@ -1,5 +1,6 @@
 ﻿using System;
 using Raylib_cs;
+using ludwig_jam_2021.Engine.Objects;
 
 namespace ludwig_jam_2021
 {
@@ -12,7 +13,8 @@ namespace ludwig_jam_2021
             int display = Raylib.GetCurrentMonitor();
             Raylib.InitWindow(Raylib.GetMonitorHeight(display), Raylib.GetMonitorWidth(display), "Beatmap Game");
             Raylib.ToggleFullscreen();
-            
+
+            Platform test = new Platform(50f, 50f);
 
             while(!Raylib.WindowShouldClose())
             {
@@ -20,6 +22,7 @@ namespace ludwig_jam_2021
                 Raylib.ClearBackground(Color.BLACK);
 
                 Raylib.DrawText("Hello World", 12, 12, 20, Color.WHITE);
+                test.Render();
 
                 Raylib.EndDrawing();
             }
