@@ -9,9 +9,12 @@ using System.Numerics;
 using Raylib_cs;
 
 namespace ludwig_jam_2021.UI
-{   
+{
+
     class Button
     {
+        const int TEXT_SPACING = 1;
+
         private int x;
         private int y;
 
@@ -80,16 +83,16 @@ namespace ludwig_jam_2021.UI
             if (!Raylib.WindowShouldClose()) // Make sure that we still have access to raylib tech
             {
                 // Text Width
-                Vector2 textSizing = Raylib.MeasureTextEx(this.font, text, text_size, 5);
+                Vector2 textSizing = Raylib.MeasureTextEx(this.font, text, text_size, TEXT_SPACING);
                 int textWidth = (int)Math.Round(textSizing.X);
                 int textHeight = (int)Math.Round(textSizing.Y);
 
                 // Check Hover
-                this.Hover(false);
+                //this.Hover(false);
 
                 // Draw
                 Raylib.DrawRectangle(x, y, textWidth + this.padding_x, textHeight + this.padding_y, color_bg);
-                Raylib.DrawTextEx(this.font, this.text, new Vector2(x + this.padding_x / 2, y + this.padding_y / 2), this.text_size, 5, Color.WHITE);
+                Raylib.DrawTextEx(this.font, this.text, new Vector2(x + this.padding_x / 2, y + this.padding_y / 2), this.text_size, TEXT_SPACING, Color.WHITE);
 
             }
         }
@@ -99,71 +102,44 @@ namespace ludwig_jam_2021.UI
             if (!Raylib.WindowShouldClose()) // Make sure that we still have access to raylib tech
             {
                 // Text Width
-                Vector2 textSizing = Raylib.MeasureTextEx(this.font, this.text, this.text_size, 5);
+                Vector2 textSizing = Raylib.MeasureTextEx(this.font, this.text, this.text_size, TEXT_SPACING);
                 int textWidth = (int)Math.Round(textSizing.X);
                 int textHeight = (int)Math.Round(textSizing.Y);
 
                 // Modified Origin
-                int center_x = x - (textWidth / 2) - (this.padding_x / 2);
-                int center_y = y - (textHeight / 2) - (this.padding_y / 2);
+                int center_x = x - (this.padding_x / 2) - (textWidth / 2);
+                int center_y = y - (this.padding_y / 2) - (textHeight / 2);
+
+                Rectangle rect = new Rectangle(center_x, center_y, this.padding_x + textWidth, this.padding_y + textHeight);
 
                 // Check Hover
-                this.Hover(true);
+                this.Hover(rect);
 
                 // Draw
-                Raylib.DrawRectangle(center_x, center_y, textWidth + this.padding_x, textHeight + this.padding_y, color_bg);
-                Raylib.DrawTextEx(this.font, this.text, new Vector2(center_x + this.padding_x / 2, center_y + this.padding_y / 2), this.text_size, 5, Color.WHITE);
+                Raylib.DrawRectangleRec(rect, color_bg);
+                Raylib.DrawTextEx(this.font, this.text, new Vector2(center_x + this.padding_x / 2, center_y + this.padding_y / 2), this.text_size, TEXT_SPACING, Color.WHITE);
             }
         }
 
-        private bool Hover(bool centered)
+        private bool Hover(Rectangle rect)
         {
-            int x;
-            int y;
-            int x_end;
-            int y_end;
 
-            Vector2 textSizing = Raylib.MeasureTextEx(this.font, this.text, this.text_size, 5);
-            int textWidth = (int)Math.Round(textSizing.X);
-            int textHeight = (int)Math.Round(textSizing.Y);
-
-            if (centered == true)
-            {
-                x = this.x - (textWidth / 2) - (this.padding_x / 2);
-                y = this.y - (textHeight) - (this.padding_y / 2);
-
-                x_end = x + textWidth + this.padding_x;
-                y_end = y + textHeight + this.padding_y;
-            } else
-            {
-                x = this.x;
-                y = this.y;
-
-                x_end = x + textWidth + this.padding_x;
-                y_end = y + textHeight + this.padding_y;
-            }
-
-            Vector2 mousePosition = Raylib.GetMousePosition();
-            if(mousePosition.X > x && mousePosition.X < x_end)
-            {
-                if (mousePosition.Y > y && mousePosition.Y < y_end)
+            if(Raylib.CheckCollisionPointRec(new Vector2(Raylib.GetMouseX(), Raylib.GetMouseY()), rect)) {
+                // Check Hover
+                if (this.onHover != null)
                 {
-                    // Check Hover
-                    if (this.onHover != null)
-                    {
-                        this.onHover(this);
-                    }
-
-                    // Check Click
-                    if(Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
-                    {
-                        if(this.onClick != null)
-                        {
-                            this.onClick(this);
-                        }
-                    }
-                    return true;
+                    this.onHover(this);
                 }
+
+                // Check Click
+                if (Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+                {
+                    if (this.onClick != null)
+                    {
+                        this.onClick(this);
+                    }
+                }
+                return true;
             }
             return false;
         }

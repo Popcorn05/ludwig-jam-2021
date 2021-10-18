@@ -14,7 +14,7 @@ namespace ludwig_jam_2021.Scenes
 
     class MainMenu
     {
-    public static void Render()
+        public static void Render()
         {
             // Screen Size
             int screenWidth = Raylib.GetScreenWidth();
@@ -22,6 +22,9 @@ namespace ludwig_jam_2021.Scenes
 
             // Rendering
             Raylib.ClearBackground(Color.WHITE);
+
+            // FPS Rendering
+            Helpers.FPSDisplay.Render();
 
             MainMenu.RenderUI();
         }
