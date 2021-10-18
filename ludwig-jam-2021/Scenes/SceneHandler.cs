@@ -24,6 +24,12 @@ namespace ludwig_jam_2021.Scenes
         public void ChangeScene(RenderingScenes scene)
         {
             this.scene = scene;
+
+            // Run OnOpen Functions
+            if(this.scene == RenderingScenes.MainMenu)
+            {
+                MainMenu.OnOpen();
+            }
         }
     
         public void RenderScene()

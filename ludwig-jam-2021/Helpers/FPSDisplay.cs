@@ -14,7 +14,7 @@ namespace ludwig_jam_2021.Helpers
         {
             if(!Raylib.WindowShouldClose())
             {
-                Raylib.DrawText("FPS: " + Raylib.GetFPS().ToString(), 100, 100, 20, Color.RED);
+                Raylib.DrawText("FPS: " + Raylib.GetFPS().ToString(), 100, 100, 30, Color.RED);
             }
         }
     }

@@ -23,7 +23,6 @@ namespace ludwig_jam_2021.UI
 
         private string text;
         private int text_size;
-        private int text_height;
 
         private Color color_bg;
 
@@ -41,7 +40,6 @@ namespace ludwig_jam_2021.UI
 
             this.text = "";
             this.text_size = 0;
-            this.text_height = 100;
             this.padding_x = 0;
             this.padding_y = 0;
         }

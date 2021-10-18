@@ -18,8 +18,8 @@ namespace ludwig_jam_2021
             
             // Setup the Window
             int display = Raylib.GetCurrentMonitor();
-            Raylib.InitWindow(Raylib.GetMonitorHeight(display), Raylib.GetMonitorWidth(display), "Beatmap Game");
-            Raylib.ToggleFullscreen();
+            Raylib.InitWindow(1920, 1080, "Beatmap Game");
+            //Raylib.ToggleFullscreen();
             
             // Setup Audio
             Raylib.InitAudioDevice();
@@ -28,10 +28,12 @@ namespace ludwig_jam_2021
             fonts = new Font[1];
             fonts[0] = Raylib.LoadFont("Assets/Fonts/ComicSans.ttf");
 
+            // Setup the scene handler
+            gameSceneHandler.ChangeScene(RenderingScenes.MainMenu);
+
             // Dev Thing
             Raylib.SetExitKey(KeyboardKey.KEY_Q);
 
-            gameSceneHandler.ChangeScene(RenderingScenes.MainMenu);
 
             // Main Game Loop
             while(!Raylib.WindowShouldClose())

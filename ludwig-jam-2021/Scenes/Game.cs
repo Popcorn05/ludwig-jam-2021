@@ -10,6 +10,7 @@ namespace ludwig_jam_2021.Scenes
 {
     class Game
     {
+
         public static void Render()
         {
             Raylib.ClearBackground(Color.BLUE);

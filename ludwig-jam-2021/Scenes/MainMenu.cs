@@ -14,6 +14,15 @@ namespace ludwig_jam_2021.Scenes
 
     class MainMenu
     {
+        public static Music MainMenuMusic = Raylib.LoadMusicStream("Assets/Sound/MainMenu.mp3");
+
+        // Run only once, before the gameloop
+        public static void OnOpen()
+        {
+            Raylib.PlayMusicStream(MainMenuMusic);
+            Raylib.SetMusicVolume(MainMenuMusic, 0.2f);
+        }
+
         public static void Render()
         {
             // Screen Size
@@ -25,6 +34,9 @@ namespace ludwig_jam_2021.Scenes
 
             // FPS Rendering
             Helpers.FPSDisplay.Render();
+
+            // Music
+            Raylib.UpdateMusicStream(MainMenuMusic);
 
             MainMenu.RenderUI();
         }
@@ -39,11 +51,11 @@ namespace ludwig_jam_2021.Scenes
             String TitleText = "Beatmap Game";
             int TitleFont = screenWidth / 20;
             int TitleTextSize = Raylib.MeasureText(TitleText, TitleFont);
-            Raylib.DrawText(TitleText, screenWidth / 2 - TitleTextSize / 2, screenHeight / 4, TitleFont, Color.RED);
+            Raylib.DrawText(TitleText, screenWidth / 2 - TitleTextSize / 2, screenHeight / 5, TitleFont, Color.RED);
 
             // Buttons
             Button PlayButton = new Button(screenWidth / 2, screenHeight / 2);
-            PlayButton.SetPadding(200, 100);
+            PlayButton.SetPadding(screenWidth/20, screenWidth/40);
             PlayButton.SetText("Play", 100, Program.fonts[0]);
             PlayButton.SetBackground(Color.RED);
             PlayButton.SetOnHover(Hover);
@@ -53,8 +65,8 @@ namespace ludwig_jam_2021.Scenes
 
             Button QuitButton = new Button(screenWidth / 2, screenHeight / 2 + PlayButton.GetHeight() + 100);
             // Styling
-            QuitButton.SetPadding(100, 50);
-            QuitButton.SetText("Quit", 40, Program.fonts[0]);
+            QuitButton.SetPadding(screenWidth/40, screenWidth/80);
+            QuitButton.SetText("Quit", 50, Program.fonts[0]);
             QuitButton.SetBackground(Color.RED);
 
             // Events
