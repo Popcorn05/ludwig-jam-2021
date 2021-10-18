@@ -31,6 +31,13 @@ namespace ludwig_jam_2021.Scenes
             int screenWidth = Raylib.GetScreenWidth();
             int screenHeight = Raylib.GetScreenHeight();
 
+            // Text
+            String TitleText = "Game Name";
+            int TitleFont = screenWidth / 20;
+            int TitleTextSize = Raylib.MeasureText(TitleText, TitleFont);
+            Raylib.DrawText("Game Name", screenWidth / 2 - TitleTextSize / 2, screenHeight / 4, TitleFont, Color.RED);
+
+            // Buttons
             Button PlayButton = new Button(screenWidth / 2, screenHeight / 2);
             PlayButton.SetPadding(200, 100);
             PlayButton.SetText("Play", 100);
@@ -42,9 +49,9 @@ namespace ludwig_jam_2021.Scenes
             Button QuitButton = new Button(screenWidth / 2, screenHeight / 2 + PlayButton.GetHeight() + 100);
             // Styling
             QuitButton.SetPadding(100, 50);
-            QuitButton.SetText("Quit", 50);
+            QuitButton.SetText("Quit", 40);
             QuitButton.SetBackground(Color.RED);
-            QuitButton.SetTextHeight(50);
+            QuitButton.SetTextHeight(40);
             // Events
             QuitButton.SetOnHover(Hover);
             QuitButton.SetOnClick(Quit);
