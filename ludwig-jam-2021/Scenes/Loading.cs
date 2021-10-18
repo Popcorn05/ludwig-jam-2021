@@ -9,7 +9,7 @@ using Raylib_cs;
 // This file handles the intial loading stage of the game
 namespace ludwig_jam_2021.Scenes
 {
-    class LoadingScreen
+    class Loading
     {
         public static void Render()
         {

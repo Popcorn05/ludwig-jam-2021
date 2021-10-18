@@ -7,6 +7,9 @@ namespace ludwig_jam_2021
 {
     class Program
     {
+        public static SceneHandler gameSceneHandler = new SceneHandler();
+
+
         static void Main(string[] args)
         {
             // Config Flags
@@ -16,16 +19,17 @@ namespace ludwig_jam_2021
             int display = Raylib.GetCurrentMonitor();
             Raylib.InitWindow(Raylib.GetMonitorHeight(display), Raylib.GetMonitorWidth(display), "Beatmap Game");
 
+            // Dev Thing
             Raylib.SetExitKey(KeyboardKey.KEY_Q);
 
-            //Raylib.ToggleFullscreen();
-            
+            gameSceneHandler.ChangeScene(RenderingScenes.MainMenu);
+
             // Main Game Loop
             while(!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
 
-                MainMenu.Render();
+                gameSceneHandler.RenderScene();
 
                 Raylib.EndDrawing();
             }

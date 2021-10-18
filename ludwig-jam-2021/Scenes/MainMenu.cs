@@ -32,10 +32,10 @@ namespace ludwig_jam_2021.Scenes
             int screenHeight = Raylib.GetScreenHeight();
 
             // Text
-            String TitleText = "Game Name";
+            String TitleText = "Beatmap Game";
             int TitleFont = screenWidth / 20;
             int TitleTextSize = Raylib.MeasureText(TitleText, TitleFont);
-            Raylib.DrawText("Game Name", screenWidth / 2 - TitleTextSize / 2, screenHeight / 4, TitleFont, Color.RED);
+            Raylib.DrawText(TitleText, screenWidth / 2 - TitleTextSize / 2, screenHeight / 4, TitleFont, Color.RED);
 
             // Buttons
             Button PlayButton = new Button(screenWidth / 2, screenHeight / 2);
@@ -43,6 +43,7 @@ namespace ludwig_jam_2021.Scenes
             PlayButton.SetText("Play", 100);
             PlayButton.SetBackground(Color.RED);
             PlayButton.SetOnHover(Hover);
+            PlayButton.SetOnClick(Play);
 
             PlayButton.RenderCenter();
 
@@ -63,6 +64,11 @@ namespace ludwig_jam_2021.Scenes
         private static void Hover(Button button)
         {
             button.SetBackground(Color.BLUE);
+        }
+
+        public static void Play(Button button)
+        {
+            Program.gameSceneHandler.ChangeScene(RenderingScenes.Game);   
         }
 
         public static void Quit(Button button)
