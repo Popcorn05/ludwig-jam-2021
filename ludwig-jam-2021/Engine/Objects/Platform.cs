@@ -19,7 +19,7 @@ namespace ludwig_jam_2021.Engine.Objects
         {
             this.x = x;
             this.y = y;
-            sprite = new Sprite(new string[] { "Resources/platform.png" }, false);
+            sprite = new Sprite(new string[] { "Assets/Art/platform.png" }, false);
         }
         public override void Update()
         {
