@@ -11,9 +11,10 @@ using ludwig_jam_2021.UI;
 
 namespace ludwig_jam_2021.Scenes
 {
+
     class MainMenu
     {
-        public static void Render()
+    public static void Render()
         {
             // Screen Size
             int screenWidth = Raylib.GetScreenWidth();
@@ -40,7 +41,7 @@ namespace ludwig_jam_2021.Scenes
             // Buttons
             Button PlayButton = new Button(screenWidth / 2, screenHeight / 2);
             PlayButton.SetPadding(200, 100);
-            PlayButton.SetText("Play", 100);
+            PlayButton.SetText("Play", 100, Program.fonts[0]);
             PlayButton.SetBackground(Color.RED);
             PlayButton.SetOnHover(Hover);
             PlayButton.SetOnClick(Play);
@@ -50,9 +51,9 @@ namespace ludwig_jam_2021.Scenes
             Button QuitButton = new Button(screenWidth / 2, screenHeight / 2 + PlayButton.GetHeight() + 100);
             // Styling
             QuitButton.SetPadding(100, 50);
-            QuitButton.SetText("Quit", 40);
+            QuitButton.SetText("Quit", 40, Program.fonts[0]);
             QuitButton.SetBackground(Color.RED);
-            QuitButton.SetTextHeight(40);
+
             // Events
             QuitButton.SetOnHover(Hover);
             QuitButton.SetOnClick(Quit);
